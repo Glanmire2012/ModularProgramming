@@ -1,0 +1,61 @@
+# Script: lab4Exercise1.py
+# Author: Owen Sheehan
+# Description: Lab 4 Exercise 1
+
+def main():
+    name_team1 = read_nonempty_alphabetical_string("Name team #1 >>> ")
+    goals1, points1 = get_score(name_team1)
+    total1 = calculate_total(goals1, points1)
+    name_team2 = read_nonempty_alphabetical_string("Name team #2 >>> ")
+    goals2, points2 = get_score(name_team2)
+    total2 = calculate_total(goals2, points2)
+    winning_team = determine_winning_team(name_team1, total1, name_team2, total2)
+    display_result(winning_team)
+
+def read_nonempty_alphabetical_string(prompt):
+    ok=False
+    while not ok:
+        try:
+            name=input(prompt)
+            if len(name) > 0 and name.isalpha():
+                ok = True
+                return name
+            else:
+                print("Please enter do not leave blank or use numbers")
+        except:
+            print("Error please try again (name)!!!!")
+
+
+def get_score(name):
+    ok=False
+    while not ok:
+        try:
+            goals = int(input("How many goals did "+name+" score?"))
+            ok = True
+        except:
+            print("Error please try again!!!(goals)")
+    ok=False
+    while not ok:
+        try:
+            points = int(input("How many points did "+name+" score?"))
+            ok=True
+
+        except:
+            print("Error please try again(points)!!!")
+    return goals, points
+
+def calculate_total(a,b):
+    total=(a*3)+b
+    return total
+
+def determine_winning_team(a1,b1,a2,b2):
+    if b1>b2:
+        winner=a1
+    else:
+        winner=a2
+    return winner
+
+def display_result(winner):
+    print(winner," won this game")
+
+main()
